@@ -68,16 +68,16 @@ class SiteController extends Controller
         return $this->render('cart');
     }
 
-    public function actionOrder()
-    {
-        echo "ordered";
-    }
+//    public function actionOrder()
+//    {
+//        return $this->render('order');
+//    }
 
-    public function actionAddToCart()
-    {
-        return $this->render('cart', [
-        ]);
-    }
+//    public function actionAddToCart()
+//    {
+//        return $this->render('cart', [
+//        ]);
+//    }
 
     /**
      * Login action.
