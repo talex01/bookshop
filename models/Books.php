@@ -48,8 +48,8 @@ class Books extends \yii\db\ActiveRecord
             'title' => 'Title',
             'description' => 'Description',
             'price' => 'Price',
-            'author_fk_id' => 'Author Fk ID',
-            'category_fk_id' => 'Category Fk ID',
+            'author_fk_id' => 'Author',
+            'category_fk_id' => 'Category',
             'img_src' => 'Img Src',
         ];
     }
