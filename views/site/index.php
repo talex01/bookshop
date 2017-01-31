@@ -34,8 +34,9 @@
 
     function add_ajax(id) {
         $.ajax({
-            type: "GET",
-            url: '/site/cart?id=' + id,
+            type: "POST",
+            url: "/site/cart",
+            data: "id="+id,
             success: function () {
                 alert("Товар добавлен в корзину");
                 location.reload();

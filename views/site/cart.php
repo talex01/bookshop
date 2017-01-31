@@ -22,14 +22,14 @@
 
         isset($_SESSION['order']) ? $order = $_SESSION['order'] : $order = array();
 
-        if(isset($_GET['del'])){
-            unset ($order[$_GET['del']]);
+        if(isset($_POST['del'])){
+            unset ($order[$_POST['del']]);
             sort($order);
             $_SESSION['order'] = $order;
         }
 
-        if(isset($_GET['id'])){
-            $order[] = $_GET['id'];
+        if(isset($_POST['id'])){
+            $order[] = $_POST['id'];
             sort($order);
             $_SESSION['order'] = $order;
         }
@@ -58,7 +58,7 @@ if(count($order)>0) {
         echo "
                     <tr>
                         <td><img src='{$book->img_src}' style='width: 50px;'> {$author->name} - {$book->title}</td>
-                        <td style='text-align: center;'>{$book->price} грн <img id='del_id_$i' src='/img/del.png' onclick='del_ajax($i)'/></td>
+                        <td style='text-align: center;'>{$book->price} грн <img src='/img/del.png' onclick='del_ajax($i)'/></td>
                     </tr>";
     }
     echo "<tfoot>
@@ -72,7 +72,7 @@ if(count($order)>0) {
                 </tr>
              </tfoot></table>";
 }else{
-            echo "<h2>Здесь пока пусто :(</h2>";
+            echo "<h2 style='text-align: center;'>Здесь пока пусто :(</h2>";
 }?>
     </div>
 </div>
@@ -84,10 +84,13 @@ if(count($order)>0) {
     document.getElementById("w1").firstElementChild.innerHTML="<a href='/site/cart'>Cart <sup style='color: white'><?php if(isset($_SESSION['order'])) echo count($_SESSION['order']); else echo "0"; ?></sup></a>";
     function del_ajax(id){
         $.ajax({
-            type: "GET",
-            url: '/site/cart?del='+id
+            type: "POST",
+            url: "/site/cart",
+            data: "del="+id,
+            success: function(){
+                location.reload();
+            }
         });
-        location.reload();
     }
 
     function order() {
