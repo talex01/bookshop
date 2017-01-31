@@ -1,6 +1,7 @@
 <div class="site-index">
     <div class="container-fluid body-content col-lg-6">
         <?php
+        session_start();
         use app\models\Books;
         use app\models\Author;
         use app\models\Category;
@@ -29,15 +30,16 @@
 </div>
 
 <script type="application/javascript">
+    document.getElementById("w1").firstElementChild.innerHTML="<a href='/site/cart'>Cart <sup style='color: white'><?php if(isset($_SESSION['order'])) echo count($_SESSION['order']); else echo "0"; ?></sup></a>";
+
     function add_ajax(id) {
         $.ajax({
             type: "GET",
             url: '/site/cart?id=' + id,
             success: function () {
-                alert("Книга добавлена в корзину");
-                $("#id").text=123;
+                alert("Товар добавлен в корзину");
+                location.reload();
             }
         });
-//        location.reload();
     }
 </script>

@@ -81,6 +81,7 @@ if(count($order)>0) {
 <button class="btn btn-success col-lg-offset-9 col-md-offset-8 col-xs-offset-7" style="margin-top: 30px;" onclick="order()">Оформить заказ</button>
 
 <script type="application/javascript">
+    document.getElementById("w1").firstElementChild.innerHTML="<a href='/site/cart'>Cart <sup style='color: white'><?php if(isset($_SESSION['order'])) echo count($_SESSION['order']); else echo "0"; ?></sup></a>";
     function del_ajax(id){
         $.ajax({
             type: "GET",
@@ -90,9 +91,12 @@ if(count($order)>0) {
     }
 
     function order() {
-        $.ajax({
-            type:"POST",
-            url: '/site/order'
-        });
+        alert("Спасибо за заказ, с Вами свяжется наш менеджер для уточнения деталей");
+        location.href="/site";
+        // Здесь должен быть обработчик заказов
+//        $.ajax({
+//            type:"POST",
+//            url: '/site/order'
+//        });
     }
 </script>
