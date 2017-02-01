@@ -2,14 +2,13 @@
     <div class="container-fluid body-content col-lg-6">
         <?php
         session_start();
-        use app\models\Books;
         use app\models\Author;
         use app\models\Category;
+        use yii\widgets\LinkPager;
 
         $this->title = 'Book Shop';
 
-        $books = Books::find()->all();
-        foreach ($books as $book) {
+        foreach ($models as $book) {
 
             $author = Author::find()
                 ->where(['id' => $book->author_fk_id])
@@ -25,6 +24,9 @@
                 <small>Жанр: {$genre->name}</small>
                 <h4>Цена: {$book->price} грн <span class='glyphicon glyphicon-shopping-cart' onclick='add_ajax($book->id)'></span></h4><hr>";
         }
+        echo LinkPager::widget([
+            'pagination' => $pages,
+        ]);
         ?>
     </div>
 </div>
